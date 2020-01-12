@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/CompleteCardLine.dart';
-import 'package:gwent_calculator/widgets/BasicCard.dart';
+import 'package:gwent_calculator/widgets/DraggableStockCard.dart';
 import 'package:gwent_calculator/data/CardData.dart';
 
 typedef Null CardRemovecCallback(int cardIndex);
@@ -47,6 +47,18 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
           ),
         )) ??
         false;
+  }
+
+  void _addToLine(List<CardData> line, item) {
+    setState(() {
+      line.add(item);
+    });
+  }
+
+  void _removeFromLine(List<CardData> line, idx) {
+    setState(() {
+      line.removeAt(idx);
+    });
   }
 
   Widget _appBar() {
@@ -98,42 +110,30 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       lineTitle: 'Front line',
                       cardLine: frontLine,
                       onCardsAdded: (cardData) {
-                        setState(() {
-                          frontLine.add(cardData);
-                        });
+                        _addToLine(frontLine, cardData);
                       },
                       onCardRemove: (idx) {
-                        setState(() {
-                          frontLine.removeAt(idx);
-                        });
+                        _removeFromLine(frontLine, idx);
                       },
                     ),
                     CompleteCardLine(
                       lineTitle: 'Back line',
                       cardLine: backLine,
                       onCardsAdded: (cardData) {
-                        setState(() {
-                          backLine.add(cardData);
-                        });
+                        _addToLine(backLine, cardData);
                       },
                       onCardRemove: (idx) {
-                        setState(() {
-                          backLine.removeAt(idx);
-                        });
+                        _removeFromLine(backLine, idx);
                       },
                     ),
                     CompleteCardLine(
                       lineTitle: 'Artilery',
                       cardLine: artileryLine,
                       onCardsAdded: (cardData) {
-                        setState(() {
-                          artileryLine.add(cardData);
-                        });
+                        _addToLine(artileryLine, cardData);
                       },
                       onCardRemove: (idx) {
-                        setState(() {
-                          artileryLine.removeAt(idx);
-                        });
+                        _removeFromLine(artileryLine, idx);
                       },
                     ),
                   ],
@@ -149,17 +149,9 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: options
                       .map(
-                        (item) => Draggable<CardData>(
-                          child: BasicCard(
-                            cardData: item,
-                          ),
-                          feedback: BasicCard(
-                            cardData: item,
-                          ),
-                          childWhenDragging: BasicCard(
-                            cardData: item,
-                          ),
-                          data: item,
+                        (item) => DraggableStockCard(
+                          cardCount: 1,
+                          cardData: item,
                         ),
                       )
                       .toList(),
