@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './HalfBoardScreen.dart';
-import './FullBoardScreen.dart';
+import 'package:gwent_calculator/screens/HalfBoardScreen.dart';
+import 'package:gwent_calculator/screens/FullBoardScreen.dart';
 
 class ModePage extends StatelessWidget {
   ModePage({Key key, this.title}) : super(key: key);

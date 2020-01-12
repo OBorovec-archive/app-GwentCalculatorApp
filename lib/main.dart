@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './screens/ModeScreen.dart';
+import 'package:gwent_calculator/screens/ModeScreen.dart';
 
 void main() => runApp(MyApp());
 
