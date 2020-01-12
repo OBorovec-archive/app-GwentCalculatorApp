@@ -150,7 +150,7 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                   children: options
                       .map(
                         (item) => DraggableStockCard(
-                          cardCount: 1,
+                          cardCountInit: 2,
                           cardData: item,
                         ),
                       )
@@ -160,6 +160,18 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
+          onPressed: () {},
+          child: Icon(
+            Icons.monetization_on,
+            size: 32.0,
+            color: Colors.black,
+          ),
+          heroTag: 'gwent_icon',
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

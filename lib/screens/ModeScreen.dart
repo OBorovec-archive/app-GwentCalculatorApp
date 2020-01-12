@@ -12,45 +12,59 @@ class ModePage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: null,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: width,
-              height: height / 2,
-              child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HalfBoardScreen()),
-                  );
-                },
-                color: Colors.grey,
-                child: Text(
-                  "Half board",
-                  style: TextStyle(color: Colors.white, fontSize: 32),
+      body: Stack(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                width: width,
+                height: height / 2,
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HalfBoardScreen()),
+                    );
+                  },
+                  color: Colors.grey,
+                  child: Text(
+                    "Half board",
+                    style: TextStyle(color: Colors.white, fontSize: 32),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: width,
-              height: height / 2,
-              child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FullBoardScreen()),
-                  );
-                },
-                child: Text(
-                  "Full board",
-                  style: TextStyle(color: Colors.black, fontSize: 32),
+              SizedBox(
+                width: width,
+                height: height / 2,
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FullBoardScreen()),
+                    );
+                  },
+                  child: Text(
+                    "Full board",
+                    style: TextStyle(color: Colors.black, fontSize: 32),
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+          Center(
+            child: Hero(
+              tag: 'gwent_icon',
+              child: Icon(
+                Icons.monetization_on,
+                size: 64.0,
+                color: Colors.black,
+              ),
+            ), 
+          ),
+        ],
       ),
     );
   }
