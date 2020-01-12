@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:gwent_calculator/widgets/PlayCard.dart';
+import 'package:gwent_calculator/widgets/InteractiveCard.dart';
 import 'package:gwent_calculator/data/CardData.dart';
 
 typedef Null CardAcceptCallback(CardData cardData);
+typedef Null CardRemoveCallback(int cardData);
 
 class CardLine extends StatefulWidget {
   final List<CardData> cards;
   final CardAcceptCallback onCardsAdded;
+  final CardRemoveCallback onCardRemove;
 
   CardLine({
     @required this.cards,
     @required this.onCardsAdded,
+    @required this.onCardRemove,
   });
 
   @override
@@ -32,18 +35,24 @@ class _CardLineState extends State<CardLine> {
       child: DragTarget<CardData>(
         builder: (BuildContext context, List candidateData, List rejectedData) {
           // In case of too many cards, use scroll view
-          // TODO: Compute the threshold dynamically
           if (widget.cards.length > 5) {
+            // TODO: Compute the threshold dynamically
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: widget.cards
+                    .asMap()
                     .map(
-                      (item) => PlayCard(
-                        cardData: item,
+                      (index, item) => MapEntry(
+                        index,
+                        InteractiveCard(
+                          cardData: item,
+                          onRemoveCard: () {print('object'); widget.onCardRemove(index);},
+                        ),
                       ),
                     )
+                    .values
                     .toList(),
               ),
             );
@@ -51,12 +60,18 @@ class _CardLineState extends State<CardLine> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: widget.cards
-                  .map(
-                    (item) => PlayCard(
-                      cardData: item,
-                    ),
-                  )
-                  .toList(),
+                    .asMap()
+                    .map(
+                      (index, item) => MapEntry(
+                        index,
+                        InteractiveCard(
+                          cardData: item,
+                          onRemoveCard: () {print('object'); widget.onCardRemove(index);},
+                        ),
+                      ),
+                    )
+                    .values
+                    .toList(),
             );
           }
         },

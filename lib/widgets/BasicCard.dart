@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/data/CardData.dart';
 
-class PlayCard extends StatefulWidget {
+class BasicCard extends StatefulWidget {
   final CardData cardData;
-  PlayCard({
+  BasicCard({
     @required this.cardData,
   });
 
   @override
-  _PlayCardState createState() => _PlayCardState();
+  _BasicCardState createState() => _BasicCardState();
 }
 
-class _PlayCardState extends State<PlayCard> {
+class _BasicCardState extends State<BasicCard> {
   @override
   Widget build(BuildContext context) {
     return Container(

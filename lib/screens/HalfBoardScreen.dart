@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/CompleteCardLine.dart';
-import 'package:gwent_calculator/widgets/CardLine.dart';
-import 'package:gwent_calculator/widgets/PlayCard.dart';
+import 'package:gwent_calculator/widgets/BasicCard.dart';
 import 'package:gwent_calculator/data/CardData.dart';
+
+typedef Null CardRemovecCallback(int cardIndex);
 
 class HalfBoardScreen extends StatefulWidget {
   const HalfBoardScreen({Key key}) : super(key: key);
@@ -48,77 +49,94 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
         false;
   }
 
+  Widget _appBar() {
+    return AppBar(
+      title: Text("Half board"),
+      actions: <Widget>[
+        InkWell(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+          ),
+          splashColor: Colors.white,
+          onTap: () {},
+        ),
+        InkWell(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.backup,
+              color: Colors.white,
+            ),
+          ),
+          splashColor: Colors.white,
+          onTap: () {},
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Half board"),
-          actions: <Widget>[
-            InkWell(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.refresh,
-                  color: Colors.white,
-                ),
-              ),
-              splashColor: Colors.white,
-              onTap: () {},
-            ),
-            InkWell(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.backup,
-                  color: Colors.white,
-                ),
-              ),
-              splashColor: Colors.white,
-              onTap: () {},
-            )
-          ],
-        ),
+        appBar: _appBar(),
         body: Container(
           color: Colors.grey,
           child: Row(
             children: <Widget>[
               Expanded(
                 flex: 1,
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      CompleteCardLine(
-                        lineTitle: 'Front line',
-                        cardLine: frontLine,
-                        onCardsAdded: (cardData) {
-                          setState(() {
-                            frontLine.add(cardData);
-                          });
-                        },
-                      ),
-                      CompleteCardLine(
-                        lineTitle: 'Back line',
-                        cardLine: backLine,
-                        onCardsAdded: (cardData) {
-                          setState(() {
-                            backLine.add(cardData);
-                          });
-                        },
-                      ),
-                      CompleteCardLine(
-                        lineTitle: 'Artilery',
-                        cardLine: artileryLine,
-                        onCardsAdded: (cardData) {
-                          setState(() {
-                            artileryLine.add(cardData);
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    CompleteCardLine(
+                      lineTitle: 'Front line',
+                      cardLine: frontLine,
+                      onCardsAdded: (cardData) {
+                        setState(() {
+                          frontLine.add(cardData);
+                        });
+                      },
+                      onCardRemove: (idx) {
+                        setState(() {
+                          frontLine.removeAt(idx);
+                        });
+                      },
+                    ),
+                    CompleteCardLine(
+                      lineTitle: 'Back line',
+                      cardLine: backLine,
+                      onCardsAdded: (cardData) {
+                        setState(() {
+                          backLine.add(cardData);
+                        });
+                      },
+                      onCardRemove: (idx) {
+                        setState(() {
+                          backLine.removeAt(idx);
+                        });
+                      },
+                    ),
+                    CompleteCardLine(
+                      lineTitle: 'Artilery',
+                      cardLine: artileryLine,
+                      onCardsAdded: (cardData) {
+                        setState(() {
+                          artileryLine.add(cardData);
+                        });
+                      },
+                      onCardRemove: (idx) {
+                        setState(() {
+                          artileryLine.removeAt(idx);
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               Container(
@@ -132,13 +150,13 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                   children: options
                       .map(
                         (item) => Draggable<CardData>(
-                          child: PlayCard(
+                          child: BasicCard(
                             cardData: item,
                           ),
-                          feedback: PlayCard(
+                          feedback: BasicCard(
                             cardData: item,
                           ),
-                          childWhenDragging: PlayCard(
+                          childWhenDragging: BasicCard(
                             cardData: item,
                           ),
                           data: item,
