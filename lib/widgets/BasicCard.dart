@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/models/CardData.dart';
 
 class BasicCard extends StatefulWidget {
   final CardData cardData;

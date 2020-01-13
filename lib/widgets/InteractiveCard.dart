@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/BasicCard.dart';
-import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/models/CardData.dart';
 
 enum INTERACTION_OPTIONS { remove, test }
 

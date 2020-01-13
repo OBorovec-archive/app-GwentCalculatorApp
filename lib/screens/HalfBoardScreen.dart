@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/BattleLine.dart';
 import 'package:gwent_calculator/widgets/DraggableStockCard.dart';
-import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/models/CardData.dart';
 
 typedef Null CardRemovecCallback(int cardIndex);
 

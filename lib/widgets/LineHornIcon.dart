@@ -8,8 +8,6 @@ class LineHornIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-
-        padding: EdgeInsets.all(0.0),
       onPressed: () {},
       color: active ? Colors.white : Colors.black,
       icon: Icon(

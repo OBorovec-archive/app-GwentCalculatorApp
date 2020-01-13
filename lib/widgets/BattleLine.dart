@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/CardLine.dart';
-import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/models/CardData.dart';
 import 'package:gwent_calculator/widgets/LineWeatherIcon.dart';
 import 'package:gwent_calculator/widgets/LineHornIcon.dart';
 

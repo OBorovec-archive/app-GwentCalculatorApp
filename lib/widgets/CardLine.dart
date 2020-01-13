@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/InteractiveCard.dart';
-import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/models/CardData.dart';
 
 typedef Null CardAcceptCallback(CardData cardData);
 typedef Null CardRemoveCallback(int cardData);
