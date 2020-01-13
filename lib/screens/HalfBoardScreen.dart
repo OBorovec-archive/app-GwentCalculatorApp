@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gwent_calculator/widgets/CompleteCardLine.dart';
+import 'package:gwent_calculator/widgets/BattleLine.dart';
 import 'package:gwent_calculator/widgets/DraggableStockCard.dart';
 import 'package:gwent_calculator/data/CardData.dart';
 
@@ -106,7 +106,7 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    CompleteCardLine(
+                    BattleLine(
                       lineTitle: 'Front line',
                       cardLine: frontLine,
                       onCardsAdded: (cardData) {
@@ -114,9 +114,9 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(frontLine, idx);
-                      },
+                      }, weatherIconCode: 'wi-snow',
                     ),
-                    CompleteCardLine(
+                    BattleLine(
                       lineTitle: 'Back line',
                       cardLine: backLine,
                       onCardsAdded: (cardData) {
@@ -124,9 +124,9 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(backLine, idx);
-                      },
+                      }, weatherIconCode: 'wi-fog',
                     ),
-                    CompleteCardLine(
+                    BattleLine(
                       lineTitle: 'Artilery',
                       cardLine: artileryLine,
                       onCardsAdded: (cardData) {
@@ -134,7 +134,7 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(artileryLine, idx);
-                      },
+                      }, weatherIconCode: 'wi-rain',
                     ),
                   ],
                 ),

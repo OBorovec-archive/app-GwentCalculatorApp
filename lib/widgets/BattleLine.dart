@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:gwent_calculator/widgets/CardLine.dart';
 import 'package:gwent_calculator/data/CardData.dart';
+import 'package:gwent_calculator/widgets/LineWeatherIcon.dart';
+import 'package:gwent_calculator/widgets/LineHornIcon.dart';
 
 typedef Null CardAcceptCallback(CardData cardData);
 typedef Null CardRemoveCallback(int cardData);
 
-class CompleteCardLine extends StatefulWidget {
+class BattleLine extends StatefulWidget {
   final String lineTitle;
   final List<CardData> cardLine;
+  final String weatherIconCode;
   final CardAcceptCallback onCardsAdded;
   final CardRemoveCallback onCardRemove;
 
-  const CompleteCardLine(
-      {Key key,
-      this.lineTitle,
-      this.cardLine,
-      this.onCardsAdded,
-      this.onCardRemove})
-      : super(key: key);
+  const BattleLine({
+    Key key,
+    @required this.lineTitle,
+    @required this.cardLine,
+    @required this.weatherIconCode,
+    @required this.onCardsAdded,
+    @required this.onCardRemove,
+  }) : super(key: key);
 
   @override
-  _CompleteCardLineState createState() => _CompleteCardLineState();
+  _BattleLineState createState() => _BattleLineState();
 }
 
-class _CompleteCardLineState extends State<CompleteCardLine> {
+class _BattleLineState extends State<BattleLine> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,10 +39,7 @@ class _CompleteCardLineState extends State<CompleteCardLine> {
           ),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.favorite,
-                color: Colors.black,
-              ),
+              LineHornIcon(active: true,),
               Expanded(
                 flex: 1,
                 child: CardLine(
@@ -50,9 +51,11 @@ class _CompleteCardLineState extends State<CompleteCardLine> {
                       widget.onCardRemove(idx);
                     }),
               ),
-              Icon(
-                Icons.favorite,
-                color: Colors.black,
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: LineWeatherIcon(
+                  potencialWeatherIconCode: widget.weatherIconCode,
+                ),
               ),
             ],
           ),
