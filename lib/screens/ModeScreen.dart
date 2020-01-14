@@ -57,12 +57,17 @@ class ModePage extends StatelessWidget {
           Center(
             child: Hero(
               tag: 'gwent_icon',
-              child: Icon(
-                Icons.monetization_on,
-                size: 64.0,
-                color: Colors.black,
+              child: CircleAvatar(
+                backgroundColor: Colors.black,
+                radius: 40,
+                child: Image(
+                  image: AssetImage(
+                    'assets/images/gwintklub.png',
+                  ),
+                  color: Colors.white,
+                ),
               ),
-            ), 
+            ),
           ),
         ],
       ),

@@ -114,7 +114,8 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(frontLine, idx);
-                      }, weatherIconCode: 'wi-snow',
+                      },
+                      weatherIconCode: 'wi-snow',
                     ),
                     BattleLine(
                       lineTitle: 'Back line',
@@ -124,7 +125,8 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(backLine, idx);
-                      }, weatherIconCode: 'wi-fog',
+                      },
+                      weatherIconCode: 'wi-fog',
                     ),
                     BattleLine(
                       lineTitle: 'Artilery',
@@ -134,7 +136,8 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
                       },
                       onCardRemove: (idx) {
                         _removeFromLine(artileryLine, idx);
-                      }, weatherIconCode: 'wi-rain',
+                      },
+                      weatherIconCode: 'wi-rain',
                     ),
                   ],
                 ),
@@ -164,10 +167,15 @@ class _HalfBoardScreenState extends State<HalfBoardScreen> {
           foregroundColor: Colors.black,
           backgroundColor: Colors.transparent,
           onPressed: () {},
-          child: Icon(
-            Icons.monetization_on,
-            size: 32.0,
-            color: Colors.black,
+          child: CircleAvatar(
+            backgroundColor: Colors.black,
+            radius: 40,
+            child: Image(
+              image: AssetImage(
+                'assets/images/gwintklub.png',
+              ),
+              color: Colors.white,
+            ),
           ),
           heroTag: 'gwent_icon',
         ),
